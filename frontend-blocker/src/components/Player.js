@@ -8,12 +8,9 @@ const JUMP_VELOCITY = 2.3;
 const SPEED = 3;
 
 export const Player = () => {
-  const { moveBackward, moveForward, moveLeft, moveRight, jump } = useKeyboard()
+  const { moveBackward, moveForward, moveLeft, moveRight, jump } =
+    useKeyboard();
   const actions = useKeyboard();
-  console.log(
-    "player->actions-> ",
-    Object.entries(actions).filter(([k, v]) => v)
-  );
   const { camera } = useThree();
   const [ref, api] = useSphere(() => ({
     mass: 1,
@@ -38,7 +35,6 @@ export const Player = () => {
     camera.position.copy(
       new Vector3(pos.current[0], pos.current[1], pos.current[2])
     );
-
 
     const playerDirection = new Vector3();
 
