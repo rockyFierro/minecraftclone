@@ -5,7 +5,7 @@ function actionByKey(key) {
     KeyW: "moveForward",
     KeyA: "moveLeft",
     KeyS: "moveBackward",
-    KeyD: "MoveRight",
+    KeyD: "moveRight",
     Space: "jump",
     Digit1: "dirt",
     Digit2: "grass",
@@ -36,7 +36,7 @@ export const useKeyboard = () => {
   });
 
   const handleKeyDown = useCallback((event) => {
-    const action = actionByKey(event.code);
+  const action = actionByKey(event.code);
     // console.log("useKeyboard->handleKeyDown->event-> ", event);
     // console.log("useKeyboard->handleKeyDown->action-> ", action);
     if (action) {

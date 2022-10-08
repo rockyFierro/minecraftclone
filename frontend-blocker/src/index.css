@@ -42,3 +42,15 @@ body {
 .absolute {
   position: absolute;
 }
+
+.centered {
+  top: 50%;
+  left: 50%;
+  transform: translate(50%, 50%);
+
+}
+
+.curse {
+  background-color: rgba(30,200,0,15%);
+  color: white;
+}

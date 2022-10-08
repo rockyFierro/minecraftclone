@@ -5,8 +5,10 @@ import { useEffect, useRef } from "react";
 import { useKeyboard } from "../hooks/useKeyboard";
 
 const JUMP_VELOCITY = 2.3;
+const SPEED = 3;
 
 export const Player = () => {
+  const { moveBackward, moveForward, moveLeft, moveRight, jump } = useKeyboard()
   const actions = useKeyboard();
   console.log(
     "player->actions-> ",
@@ -36,6 +38,30 @@ export const Player = () => {
     camera.position.copy(
       new Vector3(pos.current[0], pos.current[1], pos.current[2])
     );
+
+
+    const playerDirection = new Vector3();
+
+    const frontVector = new Vector3(
+      0,
+      0,
+      (moveBackward ? 1 : 0) - (moveForward ? 1 : 0)
+    );
+
+    const sideVector = new Vector3(
+      (moveLeft ? 1 : 0) - (moveRight ? 1 : 0),
+      0,
+      0
+    );
+
+    playerDirection
+      .subVectors(frontVector, sideVector)
+      .normalize()
+      .multiplyScalar(SPEED)
+      .applyEuler(camera.rotation);
+
+    api.velocity.set(playerDirection.x, vel.current[1], playerDirection.z);
+
     //velocity
     // api.velocity.set(0, 0, 0);
     if (actions.jump && Math.abs(vel.current[1]) < 0.002) {
